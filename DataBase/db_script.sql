@@ -45,3 +45,7 @@ CREATE TABLE tactical_profiles (
 
 -- Final Table Checks
 SHOW TABLES;
+
+ALTER TABLE teams
+ADD style_of_play VARCHAR(100),
+ADD squad_success_metric DECIMAL(4, 2);
