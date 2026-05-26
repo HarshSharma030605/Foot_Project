@@ -49,3 +49,18 @@ SHOW TABLES;
 ALTER TABLE teams
 ADD style_of_play VARCHAR(100),
 ADD squad_success_metric DECIMAL(4, 2);
+
+select * from teams;
+
+SET SQL_SAFE_UPDATES = 0;
+
+UPDATE teams t
+set t.squad_size = (SELECT COUNT(*) FROM squad_assignments sa WHERE sa.team_id = t.team_id);
+
+SET SQL_SAFE_UPDATES = 1;
+
+set foreign_key_checks = 0;
+
+truncate TEAMS;
+
+set foreign_key_checks = 1;
