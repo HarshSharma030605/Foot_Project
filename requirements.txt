@@ -1,3 +1,5 @@
 mysql-connector-python
 python-dotenv
 pandas
+requests
+bs4

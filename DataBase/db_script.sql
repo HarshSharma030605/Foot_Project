@@ -55,12 +55,40 @@ select * from teams;
 SET SQL_SAFE_UPDATES = 0;
 
 UPDATE teams t
-set t.squad_size = (SELECT COUNT(*) FROM squad_assignments sa WHERE sa.team_id = t.team_id);
+INNER JOIN (
+    SELECT team_id, COUNT(*) AS total_count 
+    FROM squad_assignments 
+    GROUP BY team_id
+) sa_counts ON t.team_id = sa_counts.team_id
+SET t.squad_size = sa_counts.total_count;
 
 SET SQL_SAFE_UPDATES = 1;
 
 set foreign_key_checks = 0;
 
-truncate TEAMS;
+truncate players;
+truncate player_positions;
 
 set foreign_key_checks = 1;
+
+SELECT * from squad_assignments;
+
+ALTER table teams
+ADD column transfer_budget DECIMAL(15,2);
+
+
+-- Test Query after player and team data fullt inserted 
+SELECT 
+    t.team_name,
+    sa.jersey_number,
+    p.player_name,
+    p.age,
+    p.nationality,
+    pp.position AS primary_position,
+    sa.squad_role
+FROM squad_assignments sa
+INNER JOIN teams t ON sa.team_id = t.team_id
+INNER JOIN players p ON sa.player_id = p.player_id
+LEFT JOIN player_positions pp ON p.player_id = pp.player_id AND pp.position_priority = 'Primary'
+ORDER BY t.team_name, sa.jersey_number;
+
