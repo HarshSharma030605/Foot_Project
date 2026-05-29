@@ -1,5 +1,9 @@
 mysql-connector-python
 python-dotenv
+
 pandas
+numpy
+
 requests
 bs4
+soccerdata

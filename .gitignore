@@ -2,3 +2,6 @@
 .vscode/
 scrapers/test.py
 team_urls.txt
+scrapers/ee.py
+downloaded_files/
+trophy_mapping.txt

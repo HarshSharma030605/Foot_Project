@@ -92,3 +92,23 @@ INNER JOIN players p ON sa.player_id = p.player_id
 LEFT JOIN player_positions pp ON p.player_id = pp.player_id AND pp.position_priority = 'Primary'
 ORDER BY t.team_name, sa.jersey_number;
 
+
+-- 1. Safely drop the old constraint-bound schema layout
+DROP TABLE IF EXISTS seasonal_team_stats;
+
+-- 2. Build the optimized high-accuracy feature engineering table
+CREATE TABLE seasonal_team_stats (
+    stats_id INT AUTO_INCREMENT PRIMARY KEY,
+    team_id INT NOT NULL,
+    possession_pct DECIMAL(5,2) NOT NULL DEFAULT 50.00,
+    shots_per_90 DECIMAL(5,2) NOT NULL DEFAULT 0.00,
+    shots_on_target_pct DECIMAL(5,2) NOT NULL DEFAULT 0.00,
+    goals_per_shot DECIMAL(5,2) NOT NULL DEFAULT 0.00,
+    ppda_metric DECIMAL(5,2) NOT NULL DEFAULT 11.20,
+    goals_scored INT NOT NULL DEFAULT 0,
+    FOREIGN KEY (team_id) REFERENCES teams(team_id),
+    UNIQUE KEY uq_team_season (team_id)
+);
+
+ALTER TABLE teams MODIFY COLUMN squad_success_metric DECIMAL(6, 2) DEFAULT 0.00;
+select * from squad_assignments;
