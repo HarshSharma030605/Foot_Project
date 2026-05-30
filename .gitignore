@@ -1,6 +1,7 @@
 .env
 .vscode/
 scrapers/test.py
+models/test.py
 team_urls.txt
 scrapers/ee.py
 downloaded_files/

@@ -112,3 +112,49 @@ CREATE TABLE seasonal_team_stats (
 
 ALTER TABLE teams MODIFY COLUMN squad_success_metric DECIMAL(6, 2) DEFAULT 0.00;
 select * from squad_assignments;
+
+
+-- Player Stats Tables, Classified based on positions and a standard table for good baselines
+CREATE TABLE player_general_stats (
+    player_id INT PRIMARY KEY,
+    matches_played INT NOT NULL DEFAULT 0,
+    starts INT NOT NULL DEFAULT 0,
+    minutes_played INT NOT NULL DEFAULT 0,
+    yellow_cards INT NOT NULL DEFAULT 0,
+    red_cards INT NOT NULL DEFAULT 0,
+    FOREIGN KEY (player_id) REFERENCES players(player_id) ON DELETE CASCADE
+);
+
+-- 2. Goalkeeper Table (Unchanged)
+CREATE TABLE player_gk_stats (
+    player_id INT PRIMARY KEY,
+    goals_against INT NOT NULL DEFAULT 0,
+    saves INT NOT NULL DEFAULT 0,
+    save_pct DECIMAL(5,2) NOT NULL DEFAULT 0.00,
+    clean_sheets INT NOT NULL DEFAULT 0,
+    FOREIGN KEY (player_id) REFERENCES players(player_id) ON DELETE CASCADE
+);
+
+-- 3. Defensive & Midfield Retention Table
+CREATE TABLE player_def_mid_stats (
+    player_id INT PRIMARY KEY,
+    tackles_won INT NOT NULL DEFAULT 0,
+    interceptions INT NOT NULL DEFAULT 0,
+    blocks INT NOT NULL DEFAULT 0,
+    passes_completed INT NOT NULL DEFAULT 0,
+    progressive_passes INT NOT NULL DEFAULT 0,
+    assists INT NOT NULL DEFAULT 0,             -- Added for cross-archetype tracking
+    aerials_won_pct DECIMAL(5,2) NOT NULL DEFAULT 0.00, -- From Miscellaneous table
+    FOREIGN KEY (player_id) REFERENCES players(player_id) ON DELETE CASCADE
+);
+
+-- 4. Attacking & Creation Table
+CREATE TABLE player_att_stats (
+    player_id INT PRIMARY KEY,
+    goals INT NOT NULL DEFAULT 0,
+    assists INT NOT NULL DEFAULT 0,             -- Shared playmaking metric
+    shots_per_90 DECIMAL(5,2) NOT NULL DEFAULT 0.00,
+    shots_on_target_pct DECIMAL(5,2) NOT NULL DEFAULT 0.00,
+    goals_per_shot DECIMAL(5,2) NOT NULL DEFAULT 0.00,
+    FOREIGN KEY (player_id) REFERENCES players(player_id) ON DELETE CASCADE
+);
