@@ -158,3 +158,5 @@ CREATE TABLE player_att_stats (
     goals_per_shot DECIMAL(5,2) NOT NULL DEFAULT 0.00,
     FOREIGN KEY (player_id) REFERENCES players(player_id) ON DELETE CASCADE
 );
+
+Select distinct 
