@@ -159,4 +159,8 @@ CREATE TABLE player_att_stats (
     FOREIGN KEY (player_id) REFERENCES players(player_id) ON DELETE CASCADE
 );
 
-Select distinct 
+Select distinct archetype_label From tactical_profiles;
+
+-- Safely add market_value directly alongside contract parameters
+ALTER TABLE squad_assignments 
+ADD COLUMN market_value DECIMAL(15, 2) DEFAULT 0.00 AFTER contract_end_date;

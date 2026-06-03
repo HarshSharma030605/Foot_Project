@@ -198,7 +198,7 @@ def run_production_pipeline():
         db_teams = cursor.fetchall()
         
         if not db_teams:
-            print("⚠️ WARNING: Target database 'teams' table contains zero rows.")
+            print("WARNING: Target database 'teams' table contains zero rows.")
             cursor.close()
             conn.close()
             return
@@ -227,7 +227,7 @@ def run_production_pipeline():
         user_approval = input(f"Review the staging layout metrics above. Push these {len(staging_batch)} updates to production? (y/n): ").strip().lower()
         
         if user_approval != 'y':
-            print("\n❌ Transaction aborted by user. Database parameters left untouched.")
+            print("\nTransaction aborted by user. Database parameters left untouched.")
             cursor.close()
             conn.close()
             sys.exit(0)
@@ -242,10 +242,10 @@ def run_production_pipeline():
             updated_count += 1
             
         conn.commit()
-        print(f"🚀 SUCCESS: Changes committed. {updated_count} rows updated in production table.")
+        print(f"SUCCESS: Changes committed. {updated_count} rows updated in production table.")
         
     except Exception as err:
-        print(f"❌ Transaction Failure Error: {err}")
+        print(f"Transaction Failure Error: {err}")
     finally:
         if 'cursor' in locals(): cursor.close()
         if 'conn' in locals(): conn.close()

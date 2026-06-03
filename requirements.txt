@@ -3,6 +3,7 @@ python-dotenv
 
 pandas
 numpy
+rapidfuzz
 
 requests
 bs4
