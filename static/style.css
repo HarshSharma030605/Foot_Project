@@ -1,0 +1,40 @@
+:root { --stadium-dark: #070a13; --turf-card: #0f1524; --pitch-green: #10b981; --tactical-blue: #2563eb; --neon-glow: #38bdf8; --text-pure: #ffffff; --text-dim: #94a3b8; --border-line: #1e293b; }
+body { margin: 0; padding: 0; background-color: var(--stadium-dark); color: var(--text-pure); font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; overflow: hidden; }
+.navbar { display: flex; justify-content: space-between; align-items: center; padding: 1rem 3rem; background-color: #0c101f; border-bottom: 1px solid var(--border-line); height: 7vh; }
+.logo { font-weight: 900; letter-spacing: 2px; font-size: 1.3rem; }
+.logo span { color: var(--pitch-green); }
+.nav-links { display: flex; gap: 1rem; }
+.nav-btn { background: none; border: none; color: var(--text-dim); padding: 0.5rem 1rem; font-size: 1rem; cursor: pointer; font-weight: 500; transition: all 0.2s ease; }
+.nav-btn.active, .nav-btn:hover { color: var(--text-pure); border-bottom: 2px solid var(--pitch-green); }
+.app-viewport { height: 93vh; padding: 2rem; box-sizing: border-box; }
+.view-panel { height: 100%; overflow-y: auto; padding-bottom: 50px; }
+.hidden { display: none !important; }
+.hero-section { text-align: center; margin-top: 8vh; }
+.hero-section h1 { font-size: 3.5rem; line-height: 1.1; font-weight: 900; }
+.gradient-text { background: linear-gradient(90deg, var(--pitch-green), var(--neon-glow)); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; }
+.hero-section p { max-width: 600px; margin: 1.5rem auto; color: var(--text-dim); line-height: 1.6; }
+.features-grid { display: flex; gap: 2rem; max-width: 900px; margin: 4rem auto 0 auto; }
+.feat-card { background-color: var(--turf-card); border: 1px solid var(--border-line); padding: 2rem; border-radius: 8px; flex: 1; }
+.split-layout { display: flex; gap: 2rem; height: 100%; }
+.search-controls { width: 320px; background-color: var(--turf-card); padding: 2rem; border-radius: 12px; border: 1px solid var(--border-line); height: fit-content; }
+.input-group { margin-bottom: 1.5rem; }
+.input-group label { display: block; font-size: 0.85rem; color: var(--text-dim); margin-bottom: 0.5rem; }
+.input-group input, .input-group select { width: 100%; padding: 0.8rem; background-color: var(--stadium-dark); border: 1px solid var(--border-line); color: var(--text-pure); border-radius: 6px; }
+.submit-btn { width: 100%; padding: 1rem; border: none; font-weight: bold; border-radius: 6px; cursor: pointer; }
+.submit-btn.green-glow { background-color: var(--pitch-green); color: #000; }
+.submit-btn.blue-glow { background-color: var(--tactical-blue); color: #fff; }
+.search-results { flex: 1; background-color: var(--turf-card); border-radius: 12px; padding: 2rem; border: 1px solid var(--border-line); overflow-y: auto;}
+.featured-profile-container { display: grid; grid-template-columns: 1fr 150px 280px; gap: 1.5rem; background-color: #141c2f; padding: 2rem; border-radius: 10px; border-left: 5px solid var(--pitch-green); align-items: center; }
+.profile-meta-left h2 { margin: 0 0 1rem 0; font-size: 2rem; }
+.profile-meta-left p { margin: 0.4rem 0; color: var(--text-dim); }
+.suitability-badge { display: inline-block; background-color: var(--pitch-green); color: #000; padding: 0.4rem 1rem; font-weight: 900; border-radius: 4px; margin-top: 1rem; }
+.profile-avatar-right img { width: 100%; height: 150px; object-fit: cover; border-radius: 8px; border: 2px solid var(--border-line); }
+.hexa-chart-wrapper { width: 100%; height: 240px; }
+.brief-wrapper { margin-top: 2rem; padding: 1.5rem; background-color: #0b101d; border-radius: 8px; line-height: 1.6; }
+.general-search-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem; }
+.cards-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 1.5rem; }
+.player-card { background-color: var(--turf-card); border: 1px solid var(--border-line); border-radius: 10px; padding: 1.5rem; position: relative; transition: transform 0.2s; }
+.player-card:hover { transform: translateY(-4px); border-color: var(--tactical-blue); }
+.loader { display: flex; justify-content: center; padding: 4rem; }
+.spinner { border: 4px solid var(--border-line); border-top: 4px solid var(--pitch-green); border-radius: 50%; width: 45px; height: 45px; animation: spin 1s linear infinite; }
+@keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }

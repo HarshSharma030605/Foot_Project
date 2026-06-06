@@ -8,3 +8,5 @@ rapidfuzz
 requests
 bs4
 soccerdata
+
+flask

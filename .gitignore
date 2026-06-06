@@ -2,7 +2,9 @@
 .vscode/
 scrapers/test.py
 models/test.py
+models/__pycache__/
 team_urls.txt
 scrapers/ee.py
 downloaded_files/
 trophy_mapping.txt
+passes.txt

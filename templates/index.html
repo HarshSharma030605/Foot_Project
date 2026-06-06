@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SQUADRA // Recruitment Matrix</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="logo">SQUADRA<span>//</span>MATRIX</div>
+        <div class="nav-links">
+            <button class="nav-btn active" data-target="landing-view">Home</button>
+            <button class="nav-btn" data-target="archetype-view">Archetype Engine</button>
+            <button class="nav-btn" data-target="audit-view">Macro Club Audit</button>
+        </div>
+    </nav>
+
+    <div class="app-viewport">
+        <section id="landing-view" class="view-panel">
+            <div class="hero-section">
+                <h1>INTELLIGENT RECRUITMENT, <br><span class="gradient-text">TACTICALLY DECODED.</span></h1>
+                <p>Welcome to the next generation of football analytics. Our system coordinates data processing with explainable AI (XAI) layers to find optimal tactical profiles while matching squad gaps instantly.</p>
+            </div>
+            <div class="features-grid">
+                <div class="feat-card">
+                    <h3>🔍 Profile-Based Matching</h3>
+                    <p>Search using advanced positional archetypes. Our platform adjusts compatibility values based on system style-shifts and financial limits.</p>
+                </div>
+                <div class="feat-card">
+                    <h3>📈 Explainable XAI Engine</h3>
+                    <p>No black-box decisions here. Every target recommendation outputs an executive brief breaking down structural fits, performance, and costs cleanly.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="archetype-view" class="view-panel hidden">
+            <div class="split-layout">
+                <aside class="search-controls">
+                    <h3>Tactical Filters</h3>
+                    <div class="input-group">
+                        <label>Team Identity Code</label>
+                        <input type="number" id="teamId" value="4">
+                    </div>
+                    <div class="input-group">
+                        <label>Target Archetype</label>
+                        <select id="archetype">
+                            <option value="Playmaker">Playmaker</option>
+                            <option value="Ball Winner">Ball Winner</option>
+                            <option value="Poacher">Poacher</option>
+                            <option value="Ball Playing CB">Ball Playing CB</option>
+                            <option value="False Nine">False Nine</option>
+                        </select>
+                    </div>
+                    <button id="runArchetypeBtn" class="submit-btn green-glow">Run Tactical Search</button>
+                </aside>
+
+                <main class="search-results">
+                    <div id="archetype-loader" class="loader hidden"><div class="spinner"></div></div>
+                    <div id="archetype-results-box" class="hidden">
+                        <div class="featured-profile-container">
+                            <div class="profile-meta-left">
+                                <h2 id="featPlayerName">--</h2>
+                                <p>Age: <span id="featPlayerAge">--</span></p>
+                                <p>Club: <span id="featPlayerClub">--</span></p>
+                                <div class="suitability-badge"><span id="featSuitScore">0.0</span>/100</div>
+                            </div>
+                            <div class="profile-avatar-right">
+                                <img id="featPlayerImg" src="" alt="Avatar">
+                            </div>
+                            <div class="hexa-chart-wrapper">
+                                <canvas id="hexaChart"></canvas>
+                            </div>
+                        </div>
+                        <div class="brief-wrapper">
+                            <h3>📋 Executive Intelligence Report</h3>
+                            <div id="scoutNarrativeText"></div>
+                        </div>
+                    </div>
+                </main>
+            </div>
+        </section>
+
+        <section id="audit-view" class="view-panel hidden">
+            <div class="general-search-header">
+                <div>
+                    <h2>Macro Squad Health Audit</h2>
+                    <p class="text-dim">Evaluating internal depth vs. external market urgency.</p>
+                </div>
+                <div style="display: flex; gap: 10px;">
+                    <input type="number" id="auditTeamId" value="4" placeholder="Team ID" style="padding: 0.5rem; background: var(--stadium-dark); border: 1px solid var(--border-line); color: white; border-radius: 4px; width: 80px;">
+                    <button id="runAuditBtn" class="submit-btn blue-glow" style="width: auto; padding: 0.5rem 1.5rem;">Execute Audit</button>
+                </div>
+            </div>
+            
+            <div id="auditHeaderInfo" class="audit-stats hidden" style="display: flex; gap: 2rem; margin-bottom: 2rem; background: var(--turf-card); padding: 1.5rem; border-radius: 8px; border-left: 4px solid var(--tactical-blue);">
+                <div><strong>Club:</strong> <span id="audClub">--</span></div>
+                <div><strong>Budget:</strong> <span id="audBudget">--</span></div>
+                <div><strong>Success Metric:</strong> <span id="audMetric">--</span>/100</div>
+                <div><strong>Urgency Window:</strong> <span id="audWindow">--</span> Months</div>
+            </div>
+            <div id="auditCardsGrid" class="cards-grid">
+                <p class="placeholder-text">Input a Team ID and execute the audit to scan the roster.</p>
+            </div>
+        </section>
+    </div>
+
+    <script src="{{ url_for('static', filename='app.js') }}"></script>
+</body>
+</html>
