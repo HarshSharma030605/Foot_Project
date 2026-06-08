@@ -12,12 +12,14 @@
         <div class="logo">SQUADRA<span>//</span>MATRIX</div>
         <div class="nav-links">
             <button class="nav-btn active" data-target="landing-view">Home</button>
+            <button class="nav-btn" data-target="roster-view">Squad Roster</button>
             <button class="nav-btn" data-target="archetype-view">Archetype Engine</button>
             <button class="nav-btn" data-target="audit-view">Macro Club Audit</button>
         </div>
     </nav>
 
     <div class="app-viewport">
+        <!-- Landing -->
         <section id="landing-view" class="view-panel">
             <div class="hero-section">
                 <h1>INTELLIGENT RECRUITMENT, <br><span class="gradient-text">TACTICALLY DECODED.</span></h1>
@@ -35,22 +37,69 @@
             </div>
         </section>
 
+        <!-- Squad Roster -->
+        <section id="roster-view" class="view-panel hidden">
+            <div class="general-search-header">
+                <div>
+                    <h2>Squad Profiles</h2>
+                    <p class="text-dim">View individual player performance and archetype analysis.</p>
+                </div>
+                <div style="display: flex; gap: 10px;">
+                    <select id="rosterTeamId" style="padding: 0.5rem; background: var(--stadium-dark); border: 1px solid var(--border-line); color: white; border-radius: 4px; width: 200px;"></select>
+                    <button id="runRosterBtn" class="submit-btn blue-glow" style="width: auto; padding: 0.5rem 1.5rem;">Load Roster</button>
+                </div>
+            </div>
+            
+            <div class="split-layout">
+                <div id="rosterList" style="flex: 1; display: flex; flex-direction: column; gap: 0.5rem; max-height: 70vh; overflow-y: auto;">
+                    <p class="text-dim">Select a team to load players.</p>
+                </div>
+                
+                <div id="rosterDetailBox" style="flex: 2;" class="hidden">
+                    <div class="featured-profile-container">
+                        <div class="profile-meta-left">
+                            <h2 id="rostPlayerName">--</h2>
+                            <p>Age: <span id="rostPlayerAge">--</span> | Pos: <span id="rostPlayerPos">--</span></p>
+                            <p>Role: <span id="rostPlayerArch" style="color: var(--neon-glow); font-weight: bold;">--</span></p>
+                            <div class="suitability-badge">Arch. Match: <span id="rostPlayerConf">0.0</span>/100</div>
+                        </div>
+                        <div class="profile-avatar-right">
+                            <img id="rostPlayerImg" src="" alt="Avatar">
+                        </div>
+                        <div class="hexa-chart-wrapper">
+                            <canvas id="rostHexaChart"></canvas>
+                        </div>
+                    </div>
+                    <div class="brief-wrapper">
+                        <h3>📋 Tactical Profile Brief</h3>
+                        <div id="rostNarrativeText"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Archetype Engine -->
         <section id="archetype-view" class="view-panel hidden">
             <div class="split-layout">
                 <aside class="search-controls">
                     <h3>Tactical Filters</h3>
                     <div class="input-group">
-                        <label>Team Identity Code</label>
-                        <input type="number" id="teamId" value="4">
+                        <label>Searching Club</label>
+                        <select id="teamId"></select>
                     </div>
                     <div class="input-group">
                         <label>Target Archetype</label>
                         <select id="archetype">
-                            <option value="Playmaker">Playmaker</option>
-                            <option value="Ball Winner">Ball Winner</option>
-                            <option value="Poacher">Poacher</option>
+                            <option value="Traditional GK">Traditional GK</option>
+                            <option value="Shot Stopper">Shot Stopper</option>
                             <option value="Ball Playing CB">Ball Playing CB</option>
+                            <option value="Ball Winner">Ball Winner</option>
+                            <option value="Playmaker">Playmaker</option>
+                            <option value="Wing Back">Wing Back</option>
+                            <option value="Winger">Winger</option>
+                            <option value="Poacher">Poacher</option>
                             <option value="False Nine">False Nine</option>
+                            <option value="Inside Forward">Inside Forward</option>
                         </select>
                     </div>
                     <button id="runArchetypeBtn" class="submit-btn green-glow">Run Tactical Search</button>
@@ -82,6 +131,7 @@
             </div>
         </section>
 
+        <!-- Audit Engine -->
         <section id="audit-view" class="view-panel hidden">
             <div class="general-search-header">
                 <div>
@@ -89,7 +139,7 @@
                     <p class="text-dim">Evaluating internal depth vs. external market urgency.</p>
                 </div>
                 <div style="display: flex; gap: 10px;">
-                    <input type="number" id="auditTeamId" value="4" placeholder="Team ID" style="padding: 0.5rem; background: var(--stadium-dark); border: 1px solid var(--border-line); color: white; border-radius: 4px; width: 80px;">
+                    <select id="auditTeamId" style="padding: 0.5rem; background: var(--stadium-dark); border: 1px solid var(--border-line); color: white; border-radius: 4px; width: 200px;"></select>
                     <button id="runAuditBtn" class="submit-btn blue-glow" style="width: auto; padding: 0.5rem 1.5rem;">Execute Audit</button>
                 </div>
             </div>
@@ -101,7 +151,7 @@
                 <div><strong>Urgency Window:</strong> <span id="audWindow">--</span> Months</div>
             </div>
             <div id="auditCardsGrid" class="cards-grid">
-                <p class="placeholder-text">Input a Team ID and execute the audit to scan the roster.</p>
+                <p class="placeholder-text">Select a club and execute the audit to scan the roster.</p>
             </div>
         </section>
     </div>
