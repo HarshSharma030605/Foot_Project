@@ -148,6 +148,6 @@ python app.py
 ```
 Navigate to http://127.0.0.1:5000 in your browser.
 
-**Please feel free to pull ad update the repo with your ideas and suggestions.**
+**<p align = center>Please feel free to pull and update the repo with your ideas and suggestions.</p>**
 
-<p align = center>Made with Love by Harsh Sharma </p>
+**<p align = center>Made with Love by Harsh Sharma </p>**
